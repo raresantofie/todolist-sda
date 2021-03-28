@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ItemService} from '../item.service';
 import {Observable} from 'rxjs';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-item',
@@ -27,16 +28,17 @@ export class CreateItemComponent implements OnInit {
 
   itemsArray: Observable<ItemResponse[]> | undefined;
 
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.itemsArray = this.itemService.getAll();
   }
 
   save(): void {
-    console.log('in save item');
     this.itemService.createItem(this.item).subscribe(data => {
-      console.log(data);
+     this.toastrService.success('Item has been created with success'); // intra cu codul 200
+    }, error => {
+      this.toastrService.error('Something went  wrong'); // daca crapa ceva cu 400/500
     });
   }
 

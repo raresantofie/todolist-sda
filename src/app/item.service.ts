@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Item, ItemResponse} from './create-item/create-item.component';
+import {Item, ItemResponse, ItemStatus} from './create-item/create-item.component';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -20,5 +20,10 @@ export class ItemService {
 
   getAll(): Observable<ItemResponse[]> {
     return this.httpClient.get<ItemResponse[]>(this.API);
+  }
+
+  // http://localhost:8080/items/7
+  updateStatus(id: number, status: ItemStatus): Observable<ItemResponse> {
+    return this.httpClient.put<ItemResponse>(this.API + '/' + id, {itemStatus: status});
   }
 }

@@ -13,12 +13,20 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {HttpClientModule} from '@angular/common/http';
+import {MatListModule} from '@angular/material/list';
+import {ToastrModule} from 'ngx-toastr';
+import {ItemDescriptionDialogComponent, ItemWallComponent} from './item-wall/item-wall.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     HelloWorldComponent,
-    CreateItemComponent
+    CreateItemComponent,
+    ItemWallComponent,
+    ItemDescriptionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +38,12 @@ import {HttpClientModule} from '@angular/common/http';
     MatButtonModule,
     MatOptionModule,
     MatSelectModule,
-    HttpClientModule
+    MatListModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    DragDropModule,
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
