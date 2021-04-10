@@ -15,7 +15,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {HttpClientModule} from '@angular/common/http';
 import {MatListModule} from '@angular/material/list';
 import {ToastrModule} from 'ngx-toastr';
-import {ItemDescriptionDialogComponent, ItemWallComponent} from './item-wall/item-wall.component';
+import {ItemDeleteDialogComponent, ItemDescriptionDialogComponent, ItemWallComponent} from './item-wall/item-wall.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule} from '@angular/material/icon';
@@ -26,7 +26,8 @@ import { MatIconModule} from '@angular/material/icon';
     HelloWorldComponent,
     CreateItemComponent,
     ItemWallComponent,
-    ItemDescriptionDialogComponent
+    ItemDescriptionDialogComponent,
+    ItemDeleteDialogComponent
   ],
   imports: [
     BrowserModule,

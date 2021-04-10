@@ -17,6 +17,16 @@ export class ItemWallComponent implements OnInit {
   itemDoneResponse: ItemResponse[] = [];
 
   ngOnInit(): void {
+    this.getItemData();
+  }
+
+  constructor(private itemService: ItemService, private toastrService: ToastrService,
+              private matDialog: MatDialog) { }
+
+  getItemData(): void {
+    this.itemToDoResponse = [];
+    this.itemInProgressResponse = [];
+    this.itemDoneResponse = [];
     this.itemService.getAll().subscribe((data: ItemResponse[]) => {
       data.forEach( (item: ItemResponse) => {
         if (item.itemStatus === ItemStatus.TODO) {
@@ -35,9 +45,6 @@ export class ItemWallComponent implements OnInit {
       this.toastrService.error('Something went wrong');
     });
   }
-
-  constructor(private itemService: ItemService, private toastrService: ToastrService,
-              private matDialog: MatDialog) { }
 
   drop(event: CdkDragDrop<ItemResponse[]>): void {
     console.log('test');
@@ -85,6 +92,18 @@ export class ItemWallComponent implements OnInit {
       }
     });
   }
+
+  showDeleteDialog(id: number): void {
+    console.log('in delete dialog method');
+    const dialog = this.matDialog.open(ItemDeleteDialogComponent, {
+      data: {
+        itemId: id
+      }
+    });
+    dialog.afterClosed().subscribe(el => {
+      this.getItemData();
+    });
+  }
 }
 
 @Component({
@@ -95,3 +114,36 @@ export class ItemWallComponent implements OnInit {
 export class ItemDescriptionDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }
+
+@Component({
+    selector: 'app-item-delete-dialog',
+    templateUrl: 'item-delete-dialog.html'
+  }
+)
+export class ItemDeleteDialogComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private itemService: ItemService, private toastrService: ToastrService) {}
+
+  handleDelete(): void {
+    /**
+     * subscribe - rezulta 2 posibile actiuni
+     * 1. actiunea de succes
+     * 2. actiune de eroare
+     *
+     * .subscribe( (data-de-la-api) => {
+     *  // cum se proceseaza datele
+     * }, (eroare-de-la-api) => {
+     *   // cum se proceseaza eroarea
+     * })
+     */
+    this.itemService.deleteItem(this.data.itemId).subscribe( (apiData: any) => {
+      this.toastrService.success('Status from API is ' + apiData);
+    }, error => {
+      this.toastrService.error('Status from API is ' + error);
+    });
+  }
+
+  handleClose(): void {
+    console.log('clicked on close');
+  }
+}
+
