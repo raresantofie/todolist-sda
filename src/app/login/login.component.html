@@ -1,0 +1,11 @@
+<form class="user-registration-form">
+  <mat-form-field class="user-registration-field">
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="Insert username" name="username" [(ngModel)]="username">
+  </mat-form-field>
+  <mat-form-field class="user-registration-field">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" placeholder="Insert password" id="password_input"  name="password_input" [(ngModel)]="password">
+  </mat-form-field>
+  <button mat-raised-button name="login_button" (click)="doLogin()" >Login</button>
+</form>

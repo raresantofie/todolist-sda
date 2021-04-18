@@ -12,13 +12,16 @@ import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatListModule} from '@angular/material/list';
 import {ToastrModule} from 'ngx-toastr';
 import {ItemDeleteDialogComponent, ItemDescriptionDialogComponent, ItemWallComponent} from './item-wall/item-wall.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule} from '@angular/material/icon';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { LoginComponent } from './login/login.component';
+import {AuthInterceptorService} from './auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { MatIconModule} from '@angular/material/icon';
     CreateItemComponent,
     ItemWallComponent,
     ItemDescriptionDialogComponent,
-    ItemDeleteDialogComponent
+    ItemDeleteDialogComponent,
+    UserRegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,9 @@ import { MatIconModule} from '@angular/material/icon';
     MatDialogModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -73,4 +73,5 @@ export interface ItemResponse {
   name: string;
   itemStatus: ItemStatus;
   description: string;
+  duration: string;
 }

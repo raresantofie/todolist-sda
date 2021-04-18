@@ -1,0 +1,21 @@
+<form class="user-registration-form">
+  <mat-form-field class="user-registration-field">
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="Insert username" [(ngModel)]="requestUserDto.username" name="username">
+  </mat-form-field>
+  <mat-form-field class="user-registration-field">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" placeholder="Insert password" id="password_input" [(ngModel)]="requestUserDto.password" name="password">
+  </mat-form-field>
+  <mat-form-field class="user-registration-field">
+    <mat-label>Confirm password</mat-label>
+    <input matInput type="password" placeholder="Confirm password" id="confirm_password_input" [(ngModel)]="requestUserDto.confirmPassword" name="confirm_password">
+  </mat-form-field>
+  <mat-form-field class="user-registration-field">
+    <mat-label>Roles</mat-label>
+    <mat-select [(ngModel)]="requestUserDto.roleName" name="user_roles">
+      <mat-option *ngFor="let role of roles" value="{{role.role}}">{{role.role}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button (click)="register()" name="register_button">Create user</button>
+</form>

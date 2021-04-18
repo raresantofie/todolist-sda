@@ -13,7 +13,7 @@
     <div class="example-box" *ngFor="let item of itemToDoResponse" cdkDrag>
       {{item.name}}
       <div>
-        <button mat-icon-button color="primary" (click)="showDescription(item.description)">
+        <button mat-icon-button color="primary" (click)="showDescription(item)">
           <mat-icon>subject</mat-icon>
         </button>
         <button mat-icon-button color="primary" (click)="showDeleteDialog(item.id)">
@@ -39,7 +39,7 @@
     <div class="example-box" *ngFor="let item of itemInProgressResponse" cdkDrag>
       {{item.name}}
       <div>
-        <button mat-icon-button color="primary" (click)="showDescription(item.description)">
+        <button mat-icon-button color="primary" (click)="showDescription(item)">
           <mat-icon>subject</mat-icon>
         </button>
         <button mat-icon-button color="primary" (click)="showDeleteDialog(item.id)">
@@ -65,7 +65,7 @@
     <div class="example-box" *ngFor="let item of itemDoneResponse" cdkDrag>
       {{item.name}}
       <div>
-        <button mat-icon-button color="primary" (click)="showDescription(item.description)">
+        <button mat-icon-button color="primary" (click)="showDescription(item)">
           <mat-icon>subject</mat-icon>
         </button>
         <button mat-icon-button color="primary" (click)="showDeleteDialog(item.id)">

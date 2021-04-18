@@ -62,6 +62,25 @@ export class ItemWallComponent implements OnInit {
       // apelam metoda cu obiectul pe care il schimbam si id-ul container-ului in care o sa ajunga
       this.changeStatus(draggedItemResponse, event.container.id);
       this.itemService.updateStatus(draggedItemResponse.id, draggedItemResponse.itemStatus).subscribe( (data: ItemResponse) => {
+
+        this.itemDoneResponse.forEach( (el: ItemResponse) => {
+          if (el.id === data.id) {
+            el.duration = data.duration;
+          }
+        });
+
+        this.itemInProgressResponse.forEach( (el: ItemResponse) => {
+          if (el.id === data.id) {
+            el.duration = data.duration;
+          }
+        });
+
+        this.itemToDoResponse.forEach( (el: ItemResponse) => {
+          if (el.id === data.id) {
+            el.duration = data.duration;
+          }
+        });
+
         this.toastrService.info('Status updated succesfully');
       }, error => {
         this.toastrService.error(error);
@@ -85,10 +104,11 @@ export class ItemWallComponent implements OnInit {
     return item;
   }
 
-  showDescription(desc: string): void {
+  showDescription(item: ItemResponse): void {
     this.matDialog.open(ItemDescriptionDialogComponent, {
       data: {
-        description: desc
+        description: item.description,
+        duration: item.duration
       }
     });
   }

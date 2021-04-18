@@ -24,7 +24,8 @@ export class ItemService {
 
   // http://localhost:8080/items/7
   updateStatus(id: number, status: ItemStatus): Observable<ItemResponse> {
-    return this.httpClient.put<ItemResponse>(this.API + '/' + id, {itemStatus: status});
+    return this.httpClient.put<ItemResponse>
+      (this.API + '/' + id, {itemStatus: status});
   }
 
   deleteItem(id: number): Observable<any> {
