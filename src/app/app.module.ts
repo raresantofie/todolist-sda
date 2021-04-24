@@ -22,6 +22,8 @@ import { MatIconModule} from '@angular/material/icon';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { LoginComponent } from './login/login.component';
 import {AuthInterceptorService} from './auth-interceptor.service';
+import { NavigationComponent } from './navigation/navigation.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {AuthInterceptorService} from './auth-interceptor.service';
     ItemDescriptionDialogComponent,
     ItemDeleteDialogComponent,
     UserRegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import {AuthInterceptorService} from './auth-interceptor.service';
     ToastrModule.forRoot(),
     DragDropModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
